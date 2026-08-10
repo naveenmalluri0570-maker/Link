@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Bondam ❤️</title>
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; overflow-x:hidden; overflow-y:auto;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background:linear-gradient(135deg,#fff0f5,#ffe4ec,#fff7fb);
+    color:#4a2633; display:flex; align-items:flex-start; justify-content:center;
+    padding:24px 0; position:relative;
+  }
+  .hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .card::before,.card::after{
+    content:"";position:absolute;border-radius:50%;pointer-events:none;opacity:.45;
+  }
+  .card::before{width:150px;height:150px;background:#ffd4e2;top:-70px;right:-70px}
+  .card::after{width:120px;height:120px;background:#ffe7b8;bottom:-60px;left:-55px}
+  .heart{position:absolute;bottom:-40px;font-size:20px;animation:float 7s linear infinite;opacity:.65}
+  @keyframes float{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:.7}100%{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+  .card{
+    position:relative; width:min(92%,560px); padding:36px 30px 32px;
+    text-align:center; border-radius:32px;
+    background:rgba(255,255,255,.78); backdrop-filter:blur(14px);
+    box-shadow:0 20px 70px rgba(180,75,110,.18);
+    border:1px solid rgba(255,255,255,.9);
+    z-index:2;
+  }
+  .emoji{font-size:52px;animation:bounce 1.8s ease-in-out infinite}
+  @keyframes bounce{50%{transform:translateY(-8px) rotate(5deg)}}
+  h1{font-size:clamp(34px,8vw,54px);margin:8px 0 8px;color:#d94d79}
+  .subtitle{font-size:18px;line-height:1.6;margin:0 auto 24px;max-width:450px}
+  .message{
+    background:#fff4f7;border-radius:22px;padding:20px;
+    line-height:1.7;font-size:16px;margin:20px 0;
+  }
+  .question{font-size:25px;font-weight:700;margin:26px 0 18px}
+  .buttons{
+    position:relative;
+    min-height:64px;
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    overflow:hidden;
+    border-radius:24px;
+    padding:4px;
+  }
+  button{
+    border:0;border-radius:999px;padding:14px 25px;font-size:17px;
+    font-weight:700;cursor:pointer;transition:.2s;box-shadow:0 8px 20px rgba(0,0,0,.08)
+  }
+  #yes{
+    background:linear-gradient(135deg,#ee5d86,#d94372);
+    color:white;z-index:2;
+    box-shadow:0 10px 24px rgba(217,67,114,.25);
+  }
+  #yes:hover{transform:scale(1.07)}
+  #no{
+    background:#fff;color:#b44a69;
+    position:relative;
+    z-index:3;
+    transition:left .16s ease, top .16s ease, transform .16s ease;
+    touch-action:none;
+  }
+  #readBtn{
+    background:linear-gradient(135deg,#ee5d86,#d94372);color:white;border:0;border-radius:999px;
+    padding:14px 25px;font-size:16px;font-weight:700;cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);transition:.2s
+  }
+  #readBtn:hover{transform:scale(1.05)}
+  .small{font-size:12px;opacity:.55;margin-top:20px}
+  .success{display:none;animation:pop .55s ease}
+  @keyframes pop{from{transform:scale(.75);opacity:0}to{transform:scale(1);opacity:1}}
+  .success h2{font-size:38px;color:#d94d79;margin:8px 0}
+  .date-card{background:#fff4f7;border-radius:22px;padding:18px;margin-top:18px;line-height:1.6}
+  .confetti{position:fixed;top:-20px;font-size:22px;z-index:10;animation:fall 3.2s linear forwards}
+  @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+  @media (max-width: 520px){
+    body{padding:12px 0 24px;align-items:flex-start}
+    .card{width:94%;padding:28px 17px 26px;border-radius:26px}
+    .message{font-size:15px;padding:17px}
+    .question{font-size:22px}
+    .buttons{min-height:72px;width:100%}
+    button{font-size:16px;padding:13px 21px}
+  }
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div>
+
+<main class="card" id="mainCard">
+  <div id="ask">
+    <div id="messageStep">
+      <div class="emoji">💌</div>
+      <h1>Hey, Bondam!</h1>
+      <p class="subtitle">I have something I wanted to tell you… ❤️</p>
+
+      <div class="message">
+        <div style="font-size:24px;margin-bottom:8px">🌷 ✨ 💕</div>
+        There are some people who come into our lives and quietly become
+        a beautiful part of our story. Somehow, you became one of those
+        people for me.
+        <br><br>
+        We've shared some moments that I'll always smile about, and even
+        though life doesn't always go exactly the way we imagine, I'm
+        genuinely grateful that our paths crossed. 🥹❤️
+        <br><br>
+        So before life gets too busy and we get caught up in everything
+        that comes next, I have one little wish…
+        <br><br>
+        I want to steal you away for one cute, surprise date. 😌🌸
+        <br><br>
+        No expectations. No complicated conversations. No big promises.
+        <br><br>
+        Just you and me, some good food, a few laughs, a little wandering
+        around, and one more beautiful memory that we can look back on
+        someday and smile. ❤️
+      </div>
+
+      <button id="readBtn" onclick="showQuestion()">Okay… I read it 🥺❤️</button>
+      <div class="small">There's one little question waiting for you… 👀</div>
+    </div>
+
+    <div id="questionStep" style="display:none">
+      <div class="emoji">🥺</div>
+      <h1>So, Bondam…</h1>
+      <p class="subtitle">I have just one little question for you.</p>
+
+      <div class="question">Will you give me one more day to make a beautiful memory with you? ❤️</div>
+
+      <div class="buttons">
+        <button id="yes" onclick="sayYes()">YES ❤️</button>
+        <button id="no" type="button">NO 😏</button>
+      </div>
+
+      <div class="small">Try clicking NO… if you can catch it. 😂</div>
+    </div>
+  </div>
+
+  <div class="success" id="success">
+    <div class="emoji">🥰</div>
+    <h2>YAAAAAY! ❤️</h2>
+    <p class="subtitle">
+      I knew you had excellent taste. 😌😂
+      <br><br>
+      It's officially a date!
+    </p>
+    <div class="date-card">
+      🌷 <b>It's a surprise! 🤫</b><br>
+      You just show up looking cute.<br>
+      I'll take care of the rest. 😉<br><br>
+      <b>One rule:</b> You are not allowed to ask where we're going. 🤫
+    </div>
+    <p style="margin-top:22px;font-weight:600">
+      Can't wait to make another little memory with you. 💕
+    </p>
+  </div>
+</main>
+
+<script>
+const hearts = document.getElementById('hearts');
+const symbols = ['❤️','💕','💗','💖','🌸','✨'];
+
+for(let i=0;i<18;i++){
+  const h=document.createElement('span');
+  h.className='heart';
+  h.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  h.style.left=Math.random()*100+'%';
+  h.style.animationDelay=(Math.random()*7)+'s';
+  h.style.animationDuration=(5+Math.random()*5)+'s';
+  h.style.fontSize=(14+Math.random()*18)+'px';
+  hearts.appendChild(h);
+}
+
+const noBtn = document.getElementById('no');
+const buttonArea = document.querySelector('.buttons');
+let noMoves = 0;
+
+function escapeNoButton(e){
+  if(e) e.preventDefault();
+  noMoves++;
+
+  const messages=[
+    'Too slow! 😏',
+    'Nope! 😂',
+    'Almost! 🥺',
+    'Nice try! 😌',
+    'Catch me if you can! ❤️'
+  ];
+
+  noBtn.textContent = messages[Math.min(noMoves-1, messages.length-1)];
+
+  // Keep the button completely inside the visible button area.
+  noBtn.style.position = 'absolute';
+
+  const areaWidth = buttonArea.clientWidth;
+  const areaHeight = Math.max(buttonArea.clientHeight, 64);
+  const buttonWidth = noBtn.offsetWidth;
+  const buttonHeight = noBtn.offsetHeight;
+
+  const maxLeft = Math.max(4, areaWidth - buttonWidth - 4);
+  const maxTop = Math.max(4, areaHeight - buttonHeight - 4);
+
+  let left = 4 + Math.random() * Math.max(0, maxLeft - 4);
+  let top = 4 + Math.random() * Math.max(0, maxTop - 4);
+
+  // On small screens, make sure it stays comfortably inside the area.
+  left = Math.min(Math.max(4, left), maxLeft);
+  top = Math.min(Math.max(4, top), maxTop);
+
+  noBtn.style.left = left + 'px';
+  noBtn.style.top = top + 'px';
+}
+
+noBtn.addEventListener('pointerenter', escapeNoButton);
+noBtn.addEventListener('pointerdown', escapeNoButton);
+noBtn.addEventListener('touchstart', escapeNoButton, {passive:false});
+noBtn.addEventListener('focus', escapeNoButton);
+
+function showQuestion(){
+  document.getElementById('messageStep').style.display='none';
+  document.getElementById('questionStep').style.display='block';
+}
+
+function sayYes(){
+  document.getElementById('ask').style.display='none';
+  document.getElementById('success').style.display='block';
+  for(let i=0;i<90;i++){
+    const c=document.createElement('span');
+    c.className='confetti';
+    c.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    c.style.left=Math.random()*100+'vw';
+    c.style.animationDelay=(Math.random()*.8)+'s';
+    c.style.fontSize=(15+Math.random()*18)+'px';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4000);
+  }
+}
+</script>
+</body>
+</html>
